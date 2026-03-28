@@ -1,1 +1,14 @@
-<!DOCTYPE html><html><head><title>Edge-Sentinel</title><style>body{background-color:#0a0a0a;color:#4EAA25;font-family:monospace;padding:20px}.panel{border:1px solid #005571;padding:15px;margin-top:10px;border-radius:5px;}h1{color:#FF7F50}</style></head><body><h1>🛡️ Edge-Sentinel</h1><div class=panel><div id=telemetry>Link Active...</div></div><div class=panel><div id=ai-analysis style=font-weight:bold>Awaiting AI...</div></div><script>const ws=new WebSocket("ws://localhost:8001/ws");ws.onmessage=e=>{const d=JSON.parse(e.data);document.getElementById('telemetry').innerText="🔋 Battery: "+d.percentage+"% | "+d.status;document.getElementById('ai-analysis').innerText="🧠 AI Analysis: "+d.analysis;};ws.onerror=e=>{document.getElementById('telemetry').innerText="⚠️ Connection Lost"};</script></body></html>
+<!DOCTYPE html><html><head><title>Sentinel</title><style>
+body{background:#0a0a0a;color:#4EAA25;font-family:monospace;padding:20px}
+.box{border:1px solid #005571;padding:15px;margin-top:10px;border-radius:4px}
+h1{color:#FF7F50}</style></head><body><h1>🛡️ EDGE-SENTINEL</h1>
+<div class="box" id="t">Connecting Telemetry...</div>
+<div class="box" id="a">Awaiting AI Analysis...</div>
+<script>
+const ws = new WebSocket("ws://localhost:8001/ws");
+ws.onmessage = e => {
+    const d = JSON.parse(e.data);
+    document.getElementById('t').innerText = "🔋 BATTERY: " + d.percentage + "% [" + d.status + "]";
+    document.getElementById('a').innerText = "🧠 AI: " + d.analysis;
+};
+</script></body></html>
